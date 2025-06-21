@@ -1,6 +1,6 @@
 # 📸 Shutterfly Image Manipulation App
 
-<div align="center">
+<div>
 
 *An intuitive Android application for image manipulation with advanced drag & drop functionality*
 
@@ -262,7 +262,7 @@ Feel free to reach out for detailed technical discussions about architecture cho
 
 ---
 
-<div align="center">
+<div>
 
 **🎯 Crafted for Shutterfly Interview Process**
 
