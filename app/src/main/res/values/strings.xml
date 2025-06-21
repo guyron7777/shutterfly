@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Shutterfly</string>
+    <string name="empty_canvas_title">Drag images here from the carousel below</string>
+    <string name="image_gallery">Image Gallery</string>
+    <string name="application_title">Sutterfly test</string>
+    <string name="undo">Undo</string>
+    <string name="redo">Redo</string>
+</resources>
