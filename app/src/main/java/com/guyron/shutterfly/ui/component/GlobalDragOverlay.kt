@@ -19,6 +19,9 @@ import com.guyron.shutterfly.constants.AppConstants
 import com.guyron.shutterfly.ui.state.GlobalDragState
 import kotlin.math.roundToInt
 
+/**
+ * global drag, so the user can drag images from the bottom carousel to the canvas view.
+ */
 @Composable
 fun GlobalDragOverlay(
     modifier: Modifier = Modifier,

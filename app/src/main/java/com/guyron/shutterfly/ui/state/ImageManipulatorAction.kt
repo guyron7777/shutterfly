@@ -4,6 +4,9 @@ import android.content.Context
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.unit.IntSize
 
+/**
+ * manage the images manipulations actions
+ */
 sealed class ImageManipulatorAction {
     data class AddImage(val resourceId: Int, val position: Offset) : ImageManipulatorAction()
     data class MoveImage(val imageId: String, val position: Offset) : ImageManipulatorAction()

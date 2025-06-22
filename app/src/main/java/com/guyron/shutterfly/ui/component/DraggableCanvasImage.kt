@@ -33,6 +33,9 @@ import com.guyron.shutterfly.domain.model.CanvasImage
 import com.guyron.shutterfly.ui.state.ImageManipulatorAction
 import kotlin.math.roundToInt
 
+/**
+ * the image inside the canvas, can be zoom or pan.
+ */
 @Composable
 fun DraggableCanvasImage(
     canvasImage: CanvasImage,
@@ -88,6 +91,7 @@ fun DraggableCanvasImage(
                     y = adjustedY.roundToInt()
                 )
             }
+            //the last image to touch is the first to show.
             .zIndex(canvasImage.zIndex.toFloat())
             .pointerInput("gestures_${canvasImage.id}") {
                 awaitPointerEventScope {

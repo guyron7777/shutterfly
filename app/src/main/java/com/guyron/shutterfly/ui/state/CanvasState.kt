@@ -3,6 +3,9 @@ package com.guyron.shutterfly.ui.state
 import com.guyron.shutterfly.constants.AppConstants
 import com.guyron.shutterfly.domain.model.CanvasImage
 
+/**
+ * manage the images inside the canvas.
+ */
 data class CanvasState(
     val images: List<CanvasImage> = emptyList(),
     val selectedImageId: String? = null,

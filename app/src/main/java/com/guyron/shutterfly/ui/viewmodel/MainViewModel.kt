@@ -23,6 +23,9 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * main viewmodel. handle the logic of the app.
+ */
 @HiltViewModel
 class MainViewModel @Inject constructor(
     imageRepository: ImageRepository,
@@ -83,7 +86,6 @@ class MainViewModel @Inject constructor(
                 addImage(dragResult.resourceId, dragResult.dropPosition)
             }
             DragResult.Invalid -> {
-                // Optionally handle invalid drag (e.g., show feedback or do nothing)
             }
         }
     }

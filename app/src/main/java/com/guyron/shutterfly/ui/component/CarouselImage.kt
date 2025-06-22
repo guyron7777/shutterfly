@@ -24,6 +24,11 @@ import androidx.compose.ui.res.painterResource
 import com.guyron.shutterfly.constants.AppConstants
 import com.guyron.shutterfly.ui.state.ImageManipulatorAction
 
+/**
+ * the images inside the bottom carousel, can be square, crop, for better view.
+ * the image will be with the correct dim when the user drag it
+ * the drag is global drag so the user can drag the image above it parent's box
+*/
 @Composable
 fun CarouselImage(
     resourceId: Int,
@@ -59,6 +64,8 @@ fun CarouselImage(
                     scaleX = animatedScale.value,
                     scaleY = animatedScale.value
                 )
+                //make the long click enabled, after the user drag the image more then 30.dp up
+                //the awaitPointerEventScope will start
                 .pointerInput("carousel_drag_$resourceId") {
                     detectDragGesturesAfterLongPress(
                         onDragStart = { startOffset ->
@@ -80,6 +87,8 @@ fun CarouselImage(
                         onAction(ImageManipulatorAction.UpdateGlobalDrag(currentFingerPosition.value))
                     }
                 }
+                //awaitPointerEventScope - check if the user drag to the top more then 30.dp,
+                // if so, stop scrolling and drag the global image
                 .pointerInput("carousel_global_swipe_$resourceId") {
                     awaitPointerEventScope {
                         while (true) {
@@ -88,7 +97,7 @@ fun CarouselImage(
                             var globalDragActive = false
 
                             val globalDownPosition = imageScreenPosition.value + down.position
-                            var lastPointerPosition = down.position  // Track last LOCAL position
+                            var lastPointerPosition = down.position
 
                             do {
                                 val event = awaitPointerEvent()
@@ -101,7 +110,7 @@ fun CarouselImage(
                                     val totalMovement = globalCurrentPosition - globalDownPosition
                                     val upwardDistance = -totalMovement.y
                                     val horizontalDistance = kotlin.math.abs(totalMovement.x)
-
+                                    // start dragging
                                     if (!isDragging.value) {
                                         if (!swipeStarted &&
                                             upwardDistance >= AppConstants.Gestures.SWIPE_UP_THRESHOLD.toPx() &&
@@ -134,7 +143,7 @@ fun CarouselImage(
                                             )
                                         }
                                     }
-
+                                    //continues dragging
                                     if (isDragging.value && globalDragActive) {
                                         currentFingerPosition.value += pointerMovement
 
@@ -148,7 +157,7 @@ fun CarouselImage(
                                     lastPointerPosition = pointer.position
                                 }
                             } while (event.changes.any { it.pressed })
-
+                            //end of dragging
                             if (globalDragActive) {
                                 isDragging.value = false
                                 onAction(ImageManipulatorAction.EndGlobalDrag(context))

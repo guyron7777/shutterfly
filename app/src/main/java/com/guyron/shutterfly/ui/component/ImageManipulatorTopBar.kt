@@ -13,7 +13,9 @@ import androidx.compose.ui.res.stringResource
 import com.guyron.shutterfly.R
 import com.guyron.shutterfly.ui.state.ImageManipulatorAction
 
-
+/**
+ * top bar, have the undo redo buttons.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ShutterflyTopBar(

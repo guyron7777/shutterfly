@@ -15,7 +15,9 @@ import androidx.compose.ui.unit.dp
 import com.guyron.shutterfly.R
 import com.guyron.shutterfly.ui.state.ImageManipulatorAction
 
-
+/**
+ * the bottom carousel. have sample images and show them as scrollable carousel.
+ */
 @Composable
 fun ImageCarousel(
     images: List<Int>,

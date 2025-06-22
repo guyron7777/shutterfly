@@ -20,6 +20,7 @@ import com.guyron.shutterfly.R
 import com.guyron.shutterfly.domain.model.CanvasImage
 import com.guyron.shutterfly.ui.state.ImageManipulatorAction
 
+//the main canvas, inside this canvas the user can manipulate the images he dragged in.
 @Composable
 fun CanvasArea(
     modifier: Modifier = Modifier,
