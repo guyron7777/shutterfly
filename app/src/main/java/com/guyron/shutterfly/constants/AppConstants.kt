@@ -5,9 +5,6 @@ import com.guyron.shutterfly.R
 
 object AppConstants {
 
-    object UI {
-
-    }
     object MagicNumbers{
         const val Z_INDEX = 1500
         const val MAX_HISTORY_SIZE = 50
@@ -19,9 +16,6 @@ object AppConstants {
 
     object Gestures {
         val SWIPE_UP_THRESHOLD = 30.dp
-    }
-    object Strings {
-
     }
 
     object Resources {

@@ -3,7 +3,7 @@ package com.guyron.shutterfly.domain.usecase
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.unit.IntSize
 import com.guyron.shutterfly.constants.AppConstants
-import com.guyron.shutterfly.domain.model.CanvasState
+import com.guyron.shutterfly.ui.state.CanvasState
 
 class MoveImageUseCase {
     operator fun invoke(

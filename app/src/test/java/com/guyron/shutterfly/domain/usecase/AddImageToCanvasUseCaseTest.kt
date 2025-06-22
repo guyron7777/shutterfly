@@ -1,7 +1,7 @@
 package com.guyron.shutterfly.domain.usecase
 
 import androidx.compose.ui.geometry.Offset
-import com.guyron.shutterfly.domain.model.CanvasState
+import com.guyron.shutterfly.ui.state.CanvasState
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 

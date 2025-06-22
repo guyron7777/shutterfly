@@ -6,7 +6,7 @@ import androidx.compose.ui.unit.IntSize
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.guyron.shutterfly.domain.history.HistoryManager
-import com.guyron.shutterfly.domain.model.CanvasState
+import com.guyron.shutterfly.ui.state.CanvasState
 import com.guyron.shutterfly.domain.repository.ImageRepository
 import com.guyron.shutterfly.domain.usecase.AddImageToCanvasUseCase
 import com.guyron.shutterfly.domain.usecase.MoveImageUseCase

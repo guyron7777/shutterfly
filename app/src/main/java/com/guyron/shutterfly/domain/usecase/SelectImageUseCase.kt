@@ -1,6 +1,6 @@
 package com.guyron.shutterfly.domain.usecase
 
-import com.guyron.shutterfly.domain.model.CanvasState
+import com.guyron.shutterfly.ui.state.CanvasState
 
 class SelectImageUseCase {
     operator fun invoke(
