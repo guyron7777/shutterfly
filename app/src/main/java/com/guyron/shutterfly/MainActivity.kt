@@ -1,6 +1,5 @@
 package com.guyron.shutterfly
 
-import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -14,7 +13,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -37,7 +35,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    ImageManipulatorScreen(context = LocalContext.current)
+                    ImageManipulatorScreen()
                 }
             }
         }
@@ -46,9 +44,8 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun ImageManipulatorScreen(
-    context: Context,
     viewModel: ImageManipulatorViewModel = viewModel {
-        DependencyContainer.provideImageManipulatorViewModel(context = context)
+        DependencyContainer.provideImageManipulatorViewModel()
     }
 ) {
     val state = viewModel.state.collectAsStateWithLifecycle()

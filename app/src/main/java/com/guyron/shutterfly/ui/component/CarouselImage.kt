@@ -19,6 +19,7 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInRoot
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import com.guyron.shutterfly.constants.AppConstants
 import com.guyron.shutterfly.ui.state.ImageManipulatorAction
@@ -28,6 +29,7 @@ fun CarouselImage(
     resourceId: Int,
     onAction: (ImageManipulatorAction) -> Unit
 ) {
+    val context = LocalContext.current
     val initialFingerPosition = remember { mutableStateOf(Offset.Zero) }
     val currentFingerPosition = remember { mutableStateOf(Offset.Zero) }
     val isDragging = remember { mutableStateOf(false) }
@@ -71,7 +73,7 @@ fun CarouselImage(
                         },
                         onDragEnd = {
                             isDragging.value = false
-                            onAction(ImageManipulatorAction.EndGlobalDrag(currentFingerPosition.value))
+                            onAction(ImageManipulatorAction.EndGlobalDrag(context = context))
                         }
                     ) { _, dragAmount ->
                         currentFingerPosition.value += dragAmount
@@ -153,7 +155,7 @@ fun CarouselImage(
 
                             if (globalDragActive) {
                                 isDragging.value = false
-                                onAction(ImageManipulatorAction.EndGlobalDrag(finalGlobalPosition))
+                                onAction(ImageManipulatorAction.EndGlobalDrag(context))
                             }
                         }
                     }

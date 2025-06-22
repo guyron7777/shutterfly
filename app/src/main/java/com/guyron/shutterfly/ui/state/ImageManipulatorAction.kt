@@ -1,5 +1,6 @@
 package com.guyron.shutterfly.ui.state
 
+import android.content.Context
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.unit.IntSize
 
@@ -21,7 +22,7 @@ sealed class ImageManipulatorAction {
         ImageManipulatorAction()
 
     data class UpdateGlobalDrag(val position: Offset) : ImageManipulatorAction()
-    data class EndGlobalDrag(val dropPosition: Offset) : ImageManipulatorAction()
+    data class EndGlobalDrag(val context: Context) : ImageManipulatorAction()
     data object CancelGlobalDrag : ImageManipulatorAction()
     data class UpdateCanvasBounds(
         val position: Offset,

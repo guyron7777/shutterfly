@@ -35,7 +35,7 @@
 
 ### 📐 **Architecture Pattern**
 ```
-🏛️ MVVM (Model-View-ViewModel) + clear Architecture
+🏛️ MVVM (Model-View-ViewModel) + clean Architecture
 ├── 🎨 UI Layer (Jetpack Compose)
 ├── 🧠 ViewModel (State Management)
 ├── 🏢 Domain Layer (Business Logic)
