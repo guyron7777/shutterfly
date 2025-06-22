@@ -14,9 +14,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.guyron.shutterfly.di.DependencyContainer
 import com.guyron.shutterfly.ui.component.CanvasArea
 import com.guyron.shutterfly.ui.component.GlobalDragOverlay
 import com.guyron.shutterfly.ui.component.ImageCarousel
@@ -24,8 +23,9 @@ import com.guyron.shutterfly.ui.component.ImageManipulatorTopBar
 import com.guyron.shutterfly.ui.state.ImageManipulatorAction
 import com.guyron.shutterfly.ui.theme.ImageManipulatorTheme
 import com.guyron.shutterfly.ui.viewmodel.ImageManipulatorViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,9 +44,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun ImageManipulatorScreen(
-    viewModel: ImageManipulatorViewModel = viewModel {
-        DependencyContainer.provideImageManipulatorViewModel()
-    }
+    viewModel: ImageManipulatorViewModel = hiltViewModel()
 ) {
     val state = viewModel.state.collectAsStateWithLifecycle()
 

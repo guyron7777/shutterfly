@@ -16,21 +16,24 @@ import com.guyron.shutterfly.ui.state.DragResult
 import com.guyron.shutterfly.ui.state.DragStateManager
 import com.guyron.shutterfly.ui.state.ImageManipulatorAction
 import com.guyron.shutterfly.ui.state.ImageManipulatorState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ImageManipulatorViewModel(
+@HiltViewModel
+class ImageManipulatorViewModel @Inject constructor(
     imageRepository: ImageRepository,
-    private val addImageUseCase: AddImageToCanvasUseCase = AddImageToCanvasUseCase(),
-    private val moveImageUseCase: MoveImageUseCase = MoveImageUseCase(),
-    private val scaleImageUseCase: ScaleImageUseCase = ScaleImageUseCase(),
-    private val selectImageUseCase: SelectImageUseCase = SelectImageUseCase()
+    private val addImageUseCase: AddImageToCanvasUseCase,
+    private val moveImageUseCase: MoveImageUseCase,
+    private val scaleImageUseCase: ScaleImageUseCase,
+    private val selectImageUseCase: SelectImageUseCase,
+    private val dragManager: DragStateManager
 ) : ViewModel() {
 
     private val historyManager = HistoryManager<CanvasState>()
-    private val dragManager = DragStateManager()
 
     private val _state = MutableStateFlow(ImageManipulatorState())
     val state: StateFlow<ImageManipulatorState> = _state.asStateFlow()
