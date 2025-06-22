@@ -24,7 +24,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ImageManipulatorViewModel @Inject constructor(
+class MainViewModel @Inject constructor(
     imageRepository: ImageRepository,
     private val addImageUseCase: AddImageToCanvasUseCase,
     private val moveImageUseCase: MoveImageUseCase,

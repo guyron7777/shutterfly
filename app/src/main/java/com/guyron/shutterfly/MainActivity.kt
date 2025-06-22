@@ -19,10 +19,10 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.guyron.shutterfly.ui.component.CanvasArea
 import com.guyron.shutterfly.ui.component.GlobalDragOverlay
 import com.guyron.shutterfly.ui.component.ImageCarousel
-import com.guyron.shutterfly.ui.component.ImageManipulatorTopBar
+import com.guyron.shutterfly.ui.component.ShutterflyTopBar
 import com.guyron.shutterfly.ui.state.ImageManipulatorAction
-import com.guyron.shutterfly.ui.theme.ImageManipulatorTheme
-import com.guyron.shutterfly.ui.viewmodel.ImageManipulatorViewModel
+import com.guyron.shutterfly.ui.theme.ShutterflyThemeMain
+import com.guyron.shutterfly.ui.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ImageManipulatorTheme {
+            ShutterflyThemeMain {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -44,7 +44,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun ImageManipulatorScreen(
-    viewModel: ImageManipulatorViewModel = hiltViewModel()
+    viewModel: MainViewModel = hiltViewModel()
 ) {
     val state = viewModel.state.collectAsStateWithLifecycle()
 
@@ -55,7 +55,7 @@ fun ImageManipulatorScreen(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            ImageManipulatorTopBar(
+            ShutterflyTopBar(
                 canUndo = state.value.canUndo,
                 canRedo = state.value.canRedo,
                 onAction = viewModel::handleAction

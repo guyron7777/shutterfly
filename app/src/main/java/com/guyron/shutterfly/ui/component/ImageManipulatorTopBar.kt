@@ -16,7 +16,7 @@ import com.guyron.shutterfly.ui.state.ImageManipulatorAction
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ImageManipulatorTopBar(
+fun ShutterflyTopBar(
     canUndo: Boolean,
     canRedo: Boolean,
     onAction: (ImageManipulatorAction) -> Unit

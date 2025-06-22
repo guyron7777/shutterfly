@@ -5,7 +5,7 @@ import com.guyron.shutterfly.R
 
 object AppConstants {
 
-    object MagicNumbers{
+    object MagicNumbers {
         const val Z_INDEX = 1500
         const val MAX_HISTORY_SIZE = 50
         const val MIN_ZOOM = 0.9f

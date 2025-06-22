@@ -13,15 +13,15 @@ import org.junit.Test
 import org.mockito.Mockito
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class ImageManipulatorViewModelTest {
-    private lateinit var viewModel: ImageManipulatorViewModel
+class MainViewModelTest {
+    private lateinit var viewModel: MainViewModel
     private lateinit var repo: ImageRepository
 
     @Before
     fun setup() {
         repo = Mockito.mock(ImageRepository::class.java)
         Mockito.`when`(repo.getSampleImages()).thenReturn(listOf(1, 2, 3))
-        viewModel = ImageManipulatorViewModel(
+        viewModel = MainViewModel(
             repo,
             AddImageToCanvasUseCase(),
             MoveImageUseCase(),

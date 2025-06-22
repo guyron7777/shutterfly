@@ -86,7 +86,6 @@ fun CarouselImage(
                             val down = awaitFirstDown(requireUnconsumed = false)
                             var swipeStarted = false
                             var globalDragActive = false
-                            var finalGlobalPosition = Offset.Zero
 
                             val globalDownPosition = imageScreenPosition.value + down.position
                             var lastPointerPosition = down.position  // Track last LOCAL position
@@ -114,7 +113,6 @@ fun CarouselImage(
 
                                             initialFingerPosition.value = globalCurrentPosition
                                             currentFingerPosition.value = globalCurrentPosition
-                                            finalGlobalPosition = globalCurrentPosition
 
                                             pointer.consume()
                                             onAction(
@@ -127,7 +125,6 @@ fun CarouselImage(
 
                                         if (globalDragActive) {
                                             currentFingerPosition.value += pointerMovement
-                                            finalGlobalPosition = currentFingerPosition.value
 
                                             pointer.consume()
                                             onAction(
@@ -140,7 +137,6 @@ fun CarouselImage(
 
                                     if (isDragging.value && globalDragActive) {
                                         currentFingerPosition.value += pointerMovement
-                                        finalGlobalPosition = currentFingerPosition.value
 
                                         pointer.consume()
                                         onAction(

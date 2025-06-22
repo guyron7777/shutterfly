@@ -72,7 +72,7 @@ fun DraggableCanvasImage(
     val baseSize = AppConstants.MagicNumbers.IMAGE_SIZE_DP
     val scale = canvasImage.scale
 
-    val touchAreaScale = 1f + (scale - 1f) * 1.5f
+    val touchAreaScale = 1f + (scale - 1f) * 1f
     val actualTouchSize = baseSize * touchAreaScale
 
     val touchAreaDiff = actualTouchSize - baseSize
