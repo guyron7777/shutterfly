@@ -4,10 +4,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -48,32 +51,71 @@ fun ImageManipulatorScreen(
 ) {
     val state = viewModel.state.collectAsStateWithLifecycle()
 
-    Box(modifier = Modifier.fillMaxSize()) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            ShutterflyTopBar(
-                canUndo = state.value.canUndo,
-                canRedo = state.value.canRedo,
-                onAction = viewModel::handleAction
-            )
+    BoxWithConstraints {
+        val isLandscape = maxWidth > maxHeight
 
-            CanvasArea(
+        if (isLandscape) {
+            Row(
                 modifier = Modifier
-                    .weight(1f)
-                    .aspectRatio(1f),
-                images = state.value.canvasState.images,
-                onAction = viewModel::handleAction
-            )
+                    .fillMaxSize()
+                    .padding(16.dp),
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                CanvasArea(
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .aspectRatio(1f),
+                    images = state.value.canvasState.images,
+                    onAction = viewModel::handleAction
+                )
 
-            ImageCarousel(
-                images = viewModel.sampleImages,
-                onAction = viewModel::handleAction
-            )
+                Column(
+                    modifier = Modifier
+                        .weight(0.5f)
+                        .fillMaxHeight(),
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    ShutterflyTopBar(
+                        canUndo = state.value.canUndo,
+                        canRedo = state.value.canRedo,
+                        onAction = viewModel::handleAction
+                    )
+
+                    ImageCarousel(
+                        images = viewModel.sampleImages,
+                        onAction = viewModel::handleAction
+                    )
+                }
+            }
+        } else {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                ShutterflyTopBar(
+                    canUndo = state.value.canUndo,
+                    canRedo = state.value.canRedo,
+                    onAction = viewModel::handleAction
+                )
+
+                CanvasArea(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .aspectRatio(1f),
+                    images = state.value.canvasState.images,
+                    onAction = viewModel::handleAction
+                )
+
+                ImageCarousel(
+                    images = viewModel.sampleImages,
+                    onAction = viewModel::handleAction
+                )
+            }
         }
+
+        // same for both orientations
         GlobalDragOverlay(
             globalDragState = state.value.globalDragState,
             onAnimationComplete = {
@@ -83,3 +125,4 @@ fun ImageManipulatorScreen(
         )
     }
 }
+
